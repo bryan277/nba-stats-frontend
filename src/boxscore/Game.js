@@ -1,14 +1,6 @@
 import React, {Component} from "react";
-import {Col, Grid, Row, Table} from 'react-bootstrap'
-import styled from 'styled-components';
-import PlayerStats from './PlayerStats'
-
-const ScaleTable = styled(Table)`
-    font-size: 2vmin;
-    width: 100%;
-    white-space: nowrap;
-`;
-
+import {Col, Grid, Row, Well} from 'react-bootstrap'
+import TeamStats from "./TeamStats";
 
 export default class Game extends Component {
 
@@ -21,50 +13,41 @@ export default class Game extends Component {
         if (game.home.players.length === 0) {
             return <Row>
                 <Col lg={12}>
-                    <p align="center">Game {game.home.team} - {game.away.team} not prepared.</p>
+                    <Well align="center">Game {game.home.team} - {game.away.team} not prepared.</Well>
                 </Col>
             </Row>
         }
-        const homePlayersStats = game.home.players === null ? "" : game.home.players.map(player => <PlayerStats
-            player={player}/>);
-        const awayPlayersStats = game.away.players === null ? "" : game.away.players.map(player => <PlayerStats
-            player={player}/>);
-        const simplePlayer = homePlayersStats[0].props.player;
-        const keys = this.playersKeys().concat(Object.keys(simplePlayer.stats)).map(key =>
-            <th>{key}</th>)
         return (
-            <Row>
-                <Grid>
+            <Grid>
+                <Well>
                     <Row>
-                        <Col lg={5}>{game.home.team}</Col>
-                        <Col lg={1}>{game.home.stats.PTS}</Col>
-                        <Col lg={1}>{game.away.stats.PTS}</Col>
-                        <Col lg={5}>{game.away.team}</Col>
+                        <b>
+                            <Col align="center" lg={4}>HOME TEAM</Col>
+                            <Col align="center" lg={1}>PTS</Col>
+                            <Col align="center" lg={1}>QUARTER</Col>
+                            <Col align="center" lg={1}>TIME</Col>
+                            <Col align="center" lg={1}>PTS</Col>
+                            <Col align="center" lg={4}>AWAY TEAM</Col>
+                        </b>
                     </Row>
                     <Row>
-                        <Col lg={6}>
-                            <ScaleTable striped bordered condensed hover responsive>
-                                <thead>
-                                <tr>{keys}</tr>
-                                </thead>
-                                <tbody>
-                                {homePlayersStats}
-                                </tbody>
-                            </ScaleTable>
-                        </Col>
-                        <Col lg={6}>
-                            <ScaleTable striped bordered condensed hover responsive>
-                                <thead>
-                                <tr>{keys}</tr>
-                                </thead>
-                                <tbody>
-                                {awayPlayersStats}
-                                </tbody>
-                            </ScaleTable>
-                        </Col>
+                        <Col align="center" lg={4}>{game.home.team}</Col>
+                        <Col align="center" lg={1}>{game.home.stats.PTS}</Col>
+                        <Col align="center" lg={1}>{game.period}</Col>
+                        <Col align="center" lg={1}>{game.clock}</Col>
+                        <Col align="center" lg={1}>{game.away.stats.PTS}</Col>
+                        <Col align="center" lg={4}>{game.away.team}</Col>
                     </Row>
-                </Grid>
-            </Row>
+                </Well>
+                <Row>
+                    <Col lg={6}>
+                        <TeamStats team={game.home}/>
+                    </Col>
+                    <Col lg={6}>
+                        <TeamStats team={game.away}/>
+                    </Col>
+                </Row>
+            </Grid>
         )
     }
 }

@@ -1,20 +1,21 @@
 import React, {Component} from "react";
 import Player from "./Player";
+import {Table} from "react-bootstrap";
 
 export default class Team extends Component {
 
     render() {
         const team = this.props.team;
-        const players = team.players.map(player => <Player player={player}/>);
+        const players = team.players.map(player => <Player key={player.personId} player={player}/>);
         return (
-            <div>
+            <Table striped>
                 <thead>
-                <tr key={team.teamId}>
+                <tr>
                     <th>{team.fullName}</th>
                 </tr>
                 </thead>
                 <tbody>{players}</tbody>
-            </div>
+            </Table>
         );
     }
 }

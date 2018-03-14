@@ -1,15 +1,7 @@
 import React, {Component} from "react";
-import {Table} from "react-bootstrap";
-// import styled from "styled-components";
+import {Grid, Well} from "react-bootstrap";
 import Team from "./Team";
-
-// const Table = (teams) => {
-//     {/*<table className="table table-striped">{teams}</table>*/}
-// }
-
-// const ScaleTable = styled(Table)`
-//     font-size: 4vmin;
-//`;
+import {CustomNavbar} from "../front/CustomNavbar";
 
 export default class Rosters extends Component {
     constructor() {
@@ -30,12 +22,15 @@ export default class Rosters extends Component {
 
     render() {
         if (this.state.teams.length === 0) {
-            return (<p>Loading...</p>);
-        } else {
-            var teams = this.state.teams.map(team => <Team team={team}/>);
+            return (<Well>Loading...</Well>);
         }
-        return (<Table striped>{teams}</Table>);
-        // return (<table className="table table-striped">{teams}</table>);
+        let teams = this.state.teams.map(team => <Team key={team.fullName} team={team}/>);
+        return (
+            <Grid>
+                <CustomNavbar/>
+                {teams}
+            </Grid>
+        );
 
     }
 }
