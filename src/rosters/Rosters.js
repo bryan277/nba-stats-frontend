@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import {Grid, Well} from "react-bootstrap";
 import Team from "./Team";
-import {CustomNavbar} from "../front/CustomNavbar";
 
 export default class Rosters extends Component {
     constructor() {
@@ -27,7 +26,6 @@ export default class Rosters extends Component {
         let teams = this.state.teams.map(team => <Team key={team.fullName} team={team}/>);
         return (
             <Grid>
-                <CustomNavbar/>
                 {teams}
             </Grid>
         );

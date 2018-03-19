@@ -49,6 +49,7 @@ export class CustomDatePicker extends Component {
     }
 
     render() {
+        console.log(new Date().toLocaleString("en-US", {timeZone: "America/Los_Angeles"}))
         return (
             <MuiThemeProvider muiTheme={muiTheme}>
                 <DatePicker

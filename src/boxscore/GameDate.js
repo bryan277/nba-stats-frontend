@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import {Well} from 'react-bootstrap'
 import Game from "./Game";
-import {CustomNavbar} from "../front/CustomNavbar";
 
 export default class GameDate extends Component {
     constructor() {
@@ -26,7 +25,6 @@ export default class GameDate extends Component {
         }
         let games = this.state.games.map(game => <Game key={game.gameId} game={game}/>);
         return (<div>
-            <CustomNavbar/>
             {games}
         </div>)
     }

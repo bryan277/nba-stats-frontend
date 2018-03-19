@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
-import {CustomNavbar} from "./CustomNavbar";
+import {PageHeader} from "react-bootstrap";
 
-export class FrontPage extends Component {
+export default class FrontPage extends Component {
 
     render() {
         return (
-            <CustomNavbar/>
+            <PageHeader align="center">
+                NBA Stats
+            </PageHeader>
         )
     }
 

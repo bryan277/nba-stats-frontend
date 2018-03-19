@@ -23,18 +23,21 @@ export class CustomNavbar extends Component {
             <Navbar>
                 <Navbar.Header>
                     <Navbar.Brand>
-                        NBA Stats
+                        <a href='/'>NBA Stats</a>
                     </Navbar.Brand>
+                    <Navbar.Toggle/>
                 </Navbar.Header>
-                <Nav>
-                    <NavItem href='rosters'>
-                        Rosters
-                    </NavItem>
-                    <NavItem onClick={this.click.bind(this)}>
-                        Boxscores
-                        <CustomDatePicker showDatePicker={this.setClick.bind(this)}/>
-                    </NavItem>
-                </Nav>
+                <Navbar.Collapse>
+                    <Nav>
+                        <NavItem href='rosters'>
+                            Rosters
+                        </NavItem>
+                        <NavItem onClick={this.click.bind(this)}>
+                            Boxscores
+                            <CustomDatePicker showDatePicker={this.setClick.bind(this)}/>
+                        </NavItem>
+                    </Nav>
+                </Navbar.Collapse>
             </Navbar>
         );
     }

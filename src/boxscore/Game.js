@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Col, Grid, Row, Well} from 'react-bootstrap'
+import {Col, Glyphicon, Grid, Row, Table, Well} from 'react-bootstrap'
 import TeamStats from "./TeamStats";
 
 export default class Game extends Component {
@@ -21,22 +21,28 @@ export default class Game extends Component {
             <Grid>
                 <Well>
                     <Row>
-                        <b>
-                            <Col align="center" lg={4}>HOME TEAM</Col>
-                            <Col align="center" lg={1}>PTS</Col>
-                            <Col align="center" lg={1}>QUARTER</Col>
-                            <Col align="center" lg={1}>TIME</Col>
-                            <Col align="center" lg={1}>PTS</Col>
-                            <Col align="center" lg={4}>AWAY TEAM</Col>
-                        </b>
-                    </Row>
-                    <Row>
-                        <Col align="center" lg={4}>{game.home.team}</Col>
-                        <Col align="center" lg={1}>{game.home.stats.PTS}</Col>
-                        <Col align="center" lg={1}>{game.period}</Col>
-                        <Col align="center" lg={1}>{game.clock}</Col>
-                        <Col align="center" lg={1}>{game.away.stats.PTS}</Col>
-                        <Col align="center" lg={4}>{game.away.team}</Col>
+                        <Table>
+                            <thead>
+                            <tr>
+                                <th>HOME TEAM</th>
+                                <th>PTS</th>
+                                <th><Glyphicon glyph="list-alt"/></th>
+                                <th><Glyphicon glyph="time"/></th>
+                                <th>PTS</th>
+                                <th>AWAY TEAM</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td width="30%">{game.home.team}</td>
+                                <td width="10%">{game.home.stats.PTS}</td>
+                                <td width="10%">{game.quarter}</td>
+                                <td width="10%">{game.clock}</td>
+                                <td width="10%">{game.away.stats.PTS}</td>
+                                <td width="30%">{game.away.team}</td>
+                            </tr>
+                            </tbody>
+                        </Table>
                     </Row>
                 </Well>
                 <Row>
