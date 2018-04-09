@@ -12,7 +12,7 @@ export default class Rosters extends Component {
 
     componentDidMount() {
 
-        fetch("http://localhost:8080/api/rosters")
+        fetch("/api/rosters")
             .then(response => response.json())
             .then(data => {
                 this.setState({teams: data})

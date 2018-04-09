@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-
 import DatePicker from 'material-ui/DatePicker';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -49,7 +48,6 @@ export class CustomDatePicker extends Component {
     }
 
     render() {
-        console.log(new Date().toLocaleString("en-US", {timeZone: "America/Los_Angeles"}))
         return (
             <MuiThemeProvider muiTheme={muiTheme}>
                 <DatePicker

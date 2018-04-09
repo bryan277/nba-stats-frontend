@@ -1,19 +1,21 @@
 import React, {Component} from "react";
 import PlayerStats from "./PlayerStats";
 import {Table} from "react-bootstrap";
+import {List} from "immutable";
 import styled from 'styled-components';
+import playerComparator from '../logic/sort'
 
 const ScaleTable = styled(Table)`
     font-size: 1.5vmin;
 `;
-
 
 export default class TeamStats extends Component {
 
     constructor(props) {
         super();
         this.state = {
-            players: props.team.players
+            players: List(props.team.players),
+            sortKey: ''
         }
     }
 
@@ -22,8 +24,18 @@ export default class TeamStats extends Component {
     }
 
     sortPlayers(key, e) {
-        const players = this.state.players.sort((p1,p2) => p2.stats[key] - p1.stats[key]);
-        this.setState({players});
+        let players = this.state.players;
+        if (key === 'POS') {
+            players = this.props.team.players;
+        } else if (this.state.sortKey === key) {
+            players = this.state.players.reverse();
+        } else {
+            players = this.state.players.sort(playerComparator(key));
+        }
+        this.setState({
+            players: players,
+            sortKey: key
+        });
     }
 
     render() {
@@ -46,7 +58,7 @@ export default class TeamStats extends Component {
                 <tbody>
                 {playersStats}
                 <tr>
-                    <td colSpan={3}></td>
+                    <td colSpan={3} align="center">TOTAL</td>
                     {stats}
                 </tr>
                 </tbody>
@@ -54,5 +66,3 @@ export default class TeamStats extends Component {
         );
     }
 }
-
-// striped, hover

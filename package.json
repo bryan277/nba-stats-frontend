@@ -9,12 +9,14 @@
     "react-dom": "^16.2.0",
     "react-router-dom": "latest",
     "react-scripts": "1.1.1",
-    "styled-components": "latest"
+    "styled-components": "latest",
+    "immutable": "latest"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "proxy": "http://localhost:8080/"
 }

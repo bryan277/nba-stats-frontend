@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import {Nav, Navbar, NavItem} from 'react-bootstrap'
+import {Nav, Navbar, NavDropdown, NavItem} from 'react-bootstrap'
 import {CustomDatePicker} from "./CustomDatePicker";
 
-export class CustomNavbar extends Component {
+export default class CustomNavbar extends Component {
 
     constructor() {
         super();
@@ -18,9 +18,18 @@ export class CustomNavbar extends Component {
         this.clickChild = click;
     }
 
+    optionalDropdown(title) {
+        if (this.props.items) {
+            return <NavDropdown id={title} title={title}>
+                {this.props.items}
+            </NavDropdown>
+        }
+        return '';
+    }
+
     render() {
         return (
-            <Navbar>
+            <Navbar fixedTop collapseOnSelect>
                 <Navbar.Header>
                     <Navbar.Brand>
                         <a href='/'>NBA Stats</a>
@@ -29,7 +38,7 @@ export class CustomNavbar extends Component {
                 </Navbar.Header>
                 <Navbar.Collapse>
                     <Nav>
-                        <NavItem href='rosters'>
+                        <NavItem href='/rosters'>
                             Rosters
                         </NavItem>
                         <NavItem onClick={this.click.bind(this)}>
@@ -37,9 +46,11 @@ export class CustomNavbar extends Component {
                             <CustomDatePicker showDatePicker={this.setClick.bind(this)}/>
                         </NavItem>
                     </Nav>
+                    <Nav pullRight>
+                        {this.optionalDropdown('Games')}
+                    </Nav>
                 </Navbar.Collapse>
             </Navbar>
         );
     }
-
 }
